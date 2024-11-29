@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+        with: 
+          caching: 'false'        #decided not to have caching; so added this field
       - name: Load & Cache dependencies
         uses: ./.github/actions/cached-deps
       - name: Lint code
