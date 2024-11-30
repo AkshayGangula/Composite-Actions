@@ -11,9 +11,9 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & Cache dependencies
-        id: cache-deps
+        id: cache-deps            # dont forget this id
         uses: ./.github/actions/cached-deps
-        with: 
+        with:                     #this is input
           caching: 'false'        #decided not to have caching; so added this field
       - name: Output info
         run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
@@ -32,9 +32,9 @@ jobs:
         id: run-tests
         run: npm run test
       - name: Upload test report
-        if: failure() && steps.run-tests.outcome == 'failure'
-        uses: actions/upload-artifact@v3
-        with:
+        if: failure() && steps.run-tests.outcome == 'failure'    
+        uses: actions/upload-artifact@v3                        #failure() refers to previous fails; 
+        with:                                                   #but in the above condition. It is linked only to run-tests step.
           name: test-report
           path: test.json
       - name: Output info
@@ -71,3 +71,11 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
+  
+  information: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Run Custom Action
+        uses: ./.github/actions/deploy-s3-js
