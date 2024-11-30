@@ -26,6 +26,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & Cache dependencies
+        id: first-try
         uses: ./.github/actions/cached-deps
       - name: Test code
         id: run-tests
@@ -37,7 +38,7 @@ jobs:
           name: test-report
           path: test.json
       - name: Output info
-        run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
+        run: echo "Cache used? ${{ steps.first-try.outputs.used-cache }}"
 
   build:
     needs: test
