@@ -4,6 +4,7 @@ on:
     branches:
       - master
 jobs:
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -18,6 +19,7 @@ jobs:
         run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
       - name: Lint code
         run: npm run lint
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -34,6 +36,9 @@ jobs:
         with:
           name: test-report
           path: test.json
+      - name: Output info
+        run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
+
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -49,6 +54,7 @@ jobs:
         with:
           name: dist-files
           path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
