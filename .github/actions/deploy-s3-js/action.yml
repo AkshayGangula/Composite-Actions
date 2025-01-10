@@ -12,6 +12,10 @@ inputs:
     description: 'The folder containing deployable files'
     required: true
     default: 'dist'
+outputs:
+  website-url:
+    description: 'The URL of the deployed website.'
+    
 runs: 
  # pre: setup.js
   using: 'node20'
