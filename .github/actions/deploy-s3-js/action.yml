@@ -13,5 +13,7 @@ inputs:
     required: true
     default: 'dist'
 runs: 
+ # pre: setup.js
   using: 'node20'
-  main: 'main.js'         #we also have pre: & post:  that executes before `main.js`
+  main: 'main.js'         #we also have pre: & post:  that executes before & after `main.js`
+  # post: cleanup.js
