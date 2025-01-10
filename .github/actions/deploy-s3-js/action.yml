@@ -7,7 +7,7 @@ inputs:
   bucket-region:
     description: 'The region of the S3 Bucket'
     required: false
-    default: 'us-east-1'
+    default: 'us-east-2'
   dist-folder:
     description: 'The folder containing deployable files'
     required: true
@@ -15,7 +15,7 @@ inputs:
 outputs:
   website-url:
     description: 'The URL of the deployed website.'
-    
+
 runs: 
  # pre: setup.js
   using: 'node20'
